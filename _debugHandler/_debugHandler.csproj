@@ -7,8 +7,8 @@
     <ProjectGuid>{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_debugHandle</RootNamespace>
-    <AssemblyName>_debugHandle</AssemblyName>
+    <RootNamespace>_debugHandler</RootNamespace>
+    <AssemblyName>_debugHandler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="_debugHandle.cs" />
+    <Compile Include="_debugHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DarkRiftServer">
-      <HintPath>..\Dependencies\DarkRiftServer.exe</HintPath>
+    <Reference Include="DarkRift">
+      <HintPath>..\Dependencies\DarkRift.exe</HintPath>
     </Reference>
     <Reference Include="Transmission">
       <HintPath>..\Dependencies\Transmission.dll</HintPath>

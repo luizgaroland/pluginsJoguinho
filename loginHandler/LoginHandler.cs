@@ -43,8 +43,8 @@ namespace loginHandler
         public static bool AcceptingLogin = false;
         //Reference to the RSAInterface plugin
         private RSAInterface.RSAInterface RSAref;
-        //Reference to the debugMode
-        private bool debug = ((_debugHandle._debugHandle)PluginManager.plugins["_debughandle"]).debugMode;
+        //DebugMode = ((_debugHandler._debugHandler)PluginManager.plugins["_debughandler"]).debugMode
+        private bool debug = true;
 
         //Command To turn on the boolean to accept logins
         public void AcceptLogins(string[] parts)
@@ -64,8 +64,11 @@ namespace loginHandler
 
             if (parts[0] == "true")
             {
+                //setting that the server is accepting logins and then 
                 loginHandler.AcceptingLogin = true;
+                //initializing the RSAref variable that would be unnedded otherwise
                 RSAref = (RSAInterface.RSAInterface)PluginManager.plugins["RSAInterface"];
+                //DEBUGINFO
                 if (debug)
                 {
                     Interface.Log("RSAref on Login Handler is set");
@@ -77,12 +80,30 @@ namespace loginHandler
                 loginHandler.AcceptingLogin = false;
                 Interface.Log("AcceptingLogin set to false");
             }
+        }
+        
+        //The Function that will handle all the player connections        
+        public void onPlayerConnectionEvent( ConnectionService con )
+        {
+            if(debug)
+            {
+                Interface.Log("id : " + con.id + " Just Connected");
+            }
 
+            if (loginHandler.AcceptingLogin)
+            {
+                Interface.Log("Accepting login from " + con.id);
+            }
+            else
+            {
+                Interface.Log("denying login from " + con.id);
+                con.Close();
+            }
         }
 
         public loginHandler()
         {
-
+            ConnectionService.onPlayerConnect += onPlayerConnectionEvent;
         }
     }
 }

@@ -38,14 +38,14 @@
       <Project>{90e5d244-0403-4e75-899c-6d6e486baffa}</Project>
       <Name>RSAInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\_debugHandle\_debugHandle.csproj">
+    <ProjectReference Include="..\_debugHandler\_debugHandler.csproj">
       <Project>{426cdf97-a7e5-45b8-b2ba-2add8b26d09b}</Project>
-      <Name>_debugHandle</Name>
+      <Name>_debugHandler</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DarkRiftServer">
-      <HintPath>..\Dependencies\DarkRiftServer.exe</HintPath>
+    <Reference Include="DarkRift">
+      <HintPath>..\Dependencies\DarkRift.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Transmission">

@@ -1,13 +1,14 @@
 ﻿using DarkRift;
+using System;
 
-namespace _debugHandle
+namespace _debugHandler
 {
-    public class _debugHandle : Plugin
+    public class _debugHandler : Plugin
     {
         //Basic puglin data
         public override string name
         {
-            get { return "_debughandle"; }
+            get { return "_debughandler"; }
         }
 
         public override string version
@@ -33,7 +34,7 @@ namespace _debugHandle
         //Variable that
         public bool debugMode = true;
 
-        public _debugHandle()
+        public _debugHandler()
         { }
     }
 }

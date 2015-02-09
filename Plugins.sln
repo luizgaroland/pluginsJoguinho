@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSAInterface", "RSAInterfac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbInterface", "dbInterface\dbInterface.csproj", "{470A6FAD-E18E-483B-BDD3-59600732F2FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_debugHandle", "_debugHandle\_debugHandle.csproj", "{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_debugHandler", "_debugHandler\_debugHandler.csproj", "{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

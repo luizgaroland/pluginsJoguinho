@@ -34,8 +34,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DarkRiftServer">
-      <HintPath>..\Dependencies\DarkRiftServer.exe</HintPath>
+    <Reference Include="DarkRift">
+      <HintPath>..\Dependencies\DarkRift.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Security" />
