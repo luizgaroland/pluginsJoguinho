@@ -30,7 +30,7 @@ namespace RSAInterface
 
         public override string supportEmail
         {
-            get { return "luizherege@gmail.com"; }
+            get { return "luizherege@gmail.coma"; }
         }
 
         //RSA Provider once it is initialized on the constructor the public and private key will be acessible
