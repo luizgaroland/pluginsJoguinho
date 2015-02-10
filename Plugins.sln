@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbInterface", "dbInterface\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_debugHandler", "_debugHandler\_debugHandler.csproj", "{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mainLobby", "mainLobby\mainLobby.csproj", "{CBAF153A-ADA1-406A-AA32-CB6352850F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dataHandler", "dataHandler\dataHandler.csproj", "{0AB5D1CC-0021-48C5-AD68-4194CF30DD05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426CDF97-A7E5-45B8-B2BA-2ADD8B26D09B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBAF153A-ADA1-406A-AA32-CB6352850F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBAF153A-ADA1-406A-AA32-CB6352850F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBAF153A-ADA1-406A-AA32-CB6352850F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBAF153A-ADA1-406A-AA32-CB6352850F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AB5D1CC-0021-48C5-AD68-4194CF30DD05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AB5D1CC-0021-48C5-AD68-4194CF30DD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AB5D1CC-0021-48C5-AD68-4194CF30DD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AB5D1CC-0021-48C5-AD68-4194CF30DD05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

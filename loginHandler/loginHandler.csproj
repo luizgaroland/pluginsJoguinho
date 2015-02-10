@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="LoginHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WaitingQueueUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RSAInterface\RSAInterface.csproj">

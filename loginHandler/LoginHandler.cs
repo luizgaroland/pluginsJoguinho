@@ -124,7 +124,7 @@ namespace loginHandler
                     Interface.Log("id : " + con.id + " Just Connected and is waiting for login");
                 }//DEBUGEND*/
 
-                loginHandler.waitingQueue.Enqueue(con);                               
+                loginHandler.waitingQueue.Enqueue(new WaitingQueueUnit(con));                               
 
                 lock (processingCon)
                 {
