@@ -46,6 +46,12 @@
       <HintPath>..\Dependencies\Transmission.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RSAInterface\RSAInterface.csproj">
+      <Project>{90e5d244-0403-4e75-899c-6d6e486baffa}</Project>
+      <Name>RSAInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -32,7 +32,7 @@ namespace _debugHandler
         }
 
         //Variable that
-        public bool debugMode = true;
+        public static bool debugMode = true;
 
         public _debugHandler()
         { }

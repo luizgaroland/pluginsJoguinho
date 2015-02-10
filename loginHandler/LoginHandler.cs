@@ -1,7 +1,8 @@
 ﻿using System;
 using DarkRift;
-using _debugHandle;
+using _debugHandler;
 using RSAInterface;
+using System.Collections;
 
 namespace loginHandler
 {
@@ -40,11 +41,20 @@ namespace loginHandler
         }
 
         //Boolean defining if the server is accepting logins or not
-        public static bool AcceptingLogin = false;
+        public static bool AcceptingLogin = true;
+        //Processing Connection
+        public static ConnectionService processingCon;
+        //Waiting Queue, where connections wait to be processed
+        public static Queue waitingQueue;
+
         //Reference to the RSAInterface plugin
         private RSAInterface.RSAInterface RSAref;
-        //DebugMode = ((_debugHandler._debugHandler)PluginManager.plugins["_debughandler"]).debugMode
-        private bool debug = true;
+        //DebugMode
+        private bool debug = _debugHandler._debugHandler.debugMode;
+        //login Queue size
+        private int loginQueueSize = 50;
+        //waiting Queue size
+        private int waitingQueueSize = 50; 
 
         //Command To turn on the boolean to accept logins
         public void AcceptLogins(string[] parts)
@@ -68,11 +78,12 @@ namespace loginHandler
                 loginHandler.AcceptingLogin = true;
                 //initializing the RSAref variable that would be unnedded otherwise
                 RSAref = (RSAInterface.RSAInterface)PluginManager.plugins["RSAInterface"];
-                //DEBUGINFO
+                //*DEBUGINFO
                 if (debug)
                 {
                     Interface.Log("RSAref on Login Handler is set");
-                }
+                }//DEBUGEND*/
+
                 Interface.Log("AcceptingLogin set to true");
             }
             else if (parts[0] == "false")
@@ -83,26 +94,72 @@ namespace loginHandler
         }
         
         //The Function that will handle all the player connections        
-        public void onPlayerConnectionEvent( ConnectionService con )
+        public void onPlayerConnectionEvent(ConnectionService con)
         {
-            if(debug)
+            //*DEBUGINFO
+            if (debug)
             {
-                Interface.Log("id : " + con.id + " Just Connected");
-            }
+                Interface.Log("Trying to login from " + con.id);
+            }//DEBUGEND*/
 
             if (loginHandler.AcceptingLogin)
             {
-                Interface.Log("Accepting login from " + con.id);
+                if (loginHandler.waitingQueue.Count > waitingQueueSize)
+                {
+                    //*DEBUGINFO
+                    if (debug)
+                    {
+                        Interface.Log("Waiting queue full closing loginHandler");
+                    }//DEBUGEND*/
+
+                    //call the acceptlogins commmand with false
+                    PluginManager.plugins["loginHandler"].commands[0].callback(new string[] { "false" });                    
+                    con.Close();
+                    return;
+                }
+
+                //*DEBUGINFO
+                if (debug)
+                {
+                    Interface.Log("id : " + con.id + " Just Connected and is waiting for login");
+                }//DEBUGEND*/
+
+                loginHandler.waitingQueue.Enqueue(con);                               
+
+                lock (processingCon)
+                {
+                    processingCon = con;
+                    //*DEBUGINFO
+                    if (debug)
+                    {
+                        Interface.Log("Logging in with " + con.id);
+                    }//DEBUGEND*/
+
+                     ConnectionService dequeuedCon = (ConnectionService)loginHandler.waitingQueue.Dequeue();
+                    //else disconnect
+                    if(dequeuedCon.id != processingCon.id)
+                    {
+                        //*DEBUGINFO
+                        if (debug)
+                        {
+                            Interface.Log("Integrity problem while processing the loginqueue at: " + con.id);
+                        }//DEBUGEND*/
+                        con.Close();
+                        return;
+                    }
+                }
             }
             else
             {
                 Interface.Log("denying login from " + con.id);
                 con.Close();
+                return;
             }
         }
 
         public loginHandler()
         {
+            //Attributing the onPlayerConnect event from darkRift server with the developed event 
             ConnectionService.onPlayerConnect += onPlayerConnectionEvent;
         }
     }

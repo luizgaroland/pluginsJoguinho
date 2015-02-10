@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using DarkRift;
+using RSAInterface;
 using Npgsql;
 
 namespace dbInterface
@@ -55,15 +56,47 @@ namespace dbInterface
         private IDbConnection dbConnection;
 
         //System.Data reader
-        private IDataReader reader;
+        private IDataReader reader;       
 
         //Commands and their descriptions
 
-        /// Test Command
-        /// Testing Purpose command, it just select a test table		
-        private IDbCommand testCommand;
-        //Test Command Sql string
-        string testCommandSql = "SELECT iduser, login FROM users";
+        //Login Command Sql string
+        private string loginCommandSql = "SELECT iduser, login FROM users WHERE ";
+
+        //login command
+        public bool tryLoginCommand(string[] credentials)
+        {
+            //initializing and attributing commands to their sql strings counterparts
+            //Test Command
+            IDbCommand command = dbConnection.CreateCommand();
+            command.CommandText = this.loginCommandSql + credentials[0] + credentials[1];
+
+            //Test query execution			
+            reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                //Clean up
+                reader.Close();
+                reader = null;
+                command.Dispose();
+                command = null;
+
+                //login Successful
+                return true;
+            }
+            else
+            {
+                //Clean up
+                reader.Close();
+                reader = null;
+                command.Dispose();
+                command = null;
+
+                //login Failed
+                return false;
+            }
+        }
 
         //Class Constructor
         public dbInterface()
@@ -80,31 +113,7 @@ namespace dbInterface
                 //In case of connection failure
                 Interface.Log(msg.Message);
                 throw;
-            }
-
-            //initializing and attributing commands to their sql strings counterparts
-            //Test Command
-            testCommand = dbConnection.CreateCommand();
-            testCommand.CommandText = testCommandSql;
-
-            //Test query execution			
-            reader = testCommand.ExecuteReader();
-
-            while (reader.Read())
-            {
-                string id = reader.GetInt32(reader.GetOrdinal("iduser")).ToString();
-                string login = reader.GetString(reader.GetOrdinal("login"));
-
-                Interface.Log("ID : " + id + " login: " + login);
-            }
-
-            //Clean up
-            reader.Close();
-            reader = null;
-            testCommand.Dispose();
-            testCommand = null;
-            dbConnection.Dispose();
-            dbConnection = null;
+            }            
 
         }
     }
